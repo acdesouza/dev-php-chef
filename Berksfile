@@ -2,5 +2,6 @@ source "https://supermarket.getchef.com"
 
 metadata
 
+cookbook 'rvm', '~> 0.9.2'
 cookbook 'nginx', '~> 2.7.4'
-cookbook 'php5-fpm', '~> 0.2.0'
+cookbook 'php-fpm', '~> 0.6.10'

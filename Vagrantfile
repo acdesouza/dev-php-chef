@@ -76,14 +76,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.custom_config_path = "Vagrantfile.chef"
 
     chef.json = {
-      mysql: {
-        server_root_password: 'rootpass',
-        server_debian_password: 'debpass',
-        server_repl_password: 'replpass'
+      rvm: {
+        'default_ruby' => '1.9.3'
       }
     }
 
     chef.run_list = [
+        "recipe[nginx::default]",
+        "recipe[php-fpm]",
+        "recipe[rvm::system]",
         "recipe[dev-php::default]"
     ]
   end
