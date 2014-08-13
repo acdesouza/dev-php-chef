@@ -1,51 +1,70 @@
-# dev-php-cookbook
+# EasyFood Developer PHP Box
 
-TODO: Enter the cookbook description here.
+Vagrant box created for PHP Developers at EasyFood
 
-## Supported Platforms
+After git clone use:
 
-TODO: List your supported platforms.
-
-## Attributes
-
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['dev-php']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
-
-## Usage
-
-### dev-php::default
-
-Include `dev-php` in your node's `run_list`:
-
-```json
-{
-  "run_list": [
-    "recipe[dev-php::default]"
-  ]
-}
+```bash
+vagrant up
 ```
 
-## Contributing
+Should create VirtualBox machine and provision with Nginx, PHP-Fmp, MySQL and RVM(for capistrano deploy).
 
-1. Fork the repository on Github
-2. Create a named feature branch (i.e. `add-new-recipe`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request
+## Box creation tools
+
+  * [Vagrant](http://www.vagrantup.com/)
+  * [Chef](http://downloads.getchef.com/chef-dk/)
+  * [Berkshelf](http://berkshelf.com/)
+
+## Install
+
+  * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  * [Vagrant](http://www.vagrantup.com/downloads)
+    * vagrant plugin install vagrant-berkshelf
+    * vagrant plugin install vagrant-omnibus
+  * [Chef-dk](http://downloads.getchef.com/chef-dk)
+    * OSX
+      * brew install caskroom/cask/brew-cask
+      * brew cask install chefdk
+
+### Note
+
+Before run vagrant up --provision
+
+export PATH=/opt/chefdk/bin:$PATH
+
+Because RVM mess up PATH >:(
+
+Source: https://github.com/berkshelf/vagrant-berkshelf/issues/212
+
+
+If you get:
+
+```bash
+ERROR: You must specify at least one cookbook repo path
+```
+
+Run:
+
+```bash
+vagrant reload
+```
+
+Source: https://github.com/berkshelf/vagrant-berkshelf/issues/78
+
+
+## Included Receipes
+
+  * [Nginx](https://supermarket.getchef.com/cookbooks/nginx)
+  * [php-fpm](https://supermarket.getchef.com/cookbooks/php-fpm)
+  * [RVM](https://supermarket.getchef.com/cookbooks/rvm)
+
+## Inspiration
+
+  * [Vagrant + Ubuntu 14.04 + Chef Solo](http://www.akitaonrails.com/2014/07/28/small-bites-vagrant-ubuntu-14-04-chef-solo)
+  * [Starting the Server Build](https://www.goettner.net/2013/starting-the-server-build/)
+  * [Reginaldo Sousa: Estudando Vagrant + Chef](https://github.com/reginaldosousa/vagrant_chef)
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Antonio Carlos de Souza (ac.desouza@gmail.com)

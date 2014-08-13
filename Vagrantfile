@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   # If this value is a shorthand to a box in Vagrant Cloud then
   # config.vm.box_url doesn't need to be specified.
-  config.vm.box = "chef/ubuntu-14.04"
+  config.vm.box = "ubuntu/trusty64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # is not a Vagrant Cloud box and if it doesn't already exist on the
@@ -75,17 +75,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :chef_solo do |chef|
     chef.custom_config_path = "Vagrantfile.chef"
 
+    chef.add_recipe "apt"
+    chef.add_recipe "rvm::vagrant"
+    chef.add_recipe "rvm::user" # RVM pra um user
+    chef.add_recipe "nginx::default"
+    chef.add_recipe "php-fpm"
+
     chef.json = {
-      rvm: {
-        'default_ruby' => '1.9.3'
+      :rvm => {
+        :user_installs => [
+          {
+            :user => "vagrant",
+            :default_ruby => "2.1.2",
+            :rubies => ["2.1.2"],
+            :global_gems => [
+              { :name => 'bundler' }
+            ]
+          }
+        ],
+        vagrant: {
+          system_chef_solo: "/opt/chef/bin/chef-solo"
+        }
       }
     }
-
-    chef.run_list = [
-        "recipe[nginx::default]",
-        "recipe[php-fpm]",
-        "recipe[rvm::system]",
-        "recipe[dev-php::default]"
-    ]
   end
 end
