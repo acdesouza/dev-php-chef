@@ -1,8 +1,8 @@
 name             'dev-php'
 maintainer       'Antonio Carlos de Souza'
-maintainer_email 'ac@easyfood.com.br'
+maintainer_email 'ac.desouza@gmail.com'
 license          'All rights reserved'
-description      'Creates VM to EasyFood PHP Developer'
-long_description 'Creates VM to EasyFood PHP Developer'
+description      'How to create a PHP Developer Box'
+long_description 'How to create a PHP Developer Box'
 version          '0.1.0'
 
