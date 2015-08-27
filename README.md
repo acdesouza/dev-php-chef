@@ -1,6 +1,8 @@
-# EasyFood Developer PHP Box
+# Virtualize a PHP Developer Box
 
-Vagrant box created for PHP Developers at EasyFood
+This vagrant box was created for PHP Developers at EasyFood.
+
+So, I will share it to present how to virtualize a PHP Developer Box
 
 After git clone use:
 
